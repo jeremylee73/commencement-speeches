@@ -1,10 +1,12 @@
 import os
 import re
+import csv
 import numpy as np
 import pandas as pd
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
-import csv
+import matplotlib.pyplot as plt
+
 
 files = []
 files_ts = []
@@ -44,13 +46,20 @@ def main():
     """Writes words into words.csv"""
     with open("words.csv", mode = "w") as file:
         writer = csv.writer(file, delimiter = ",", quotechar = '"', quoting = csv.QUOTE_MINIMAL)
+        writer.writerow(["word", "count"])
         for key in wordcount_dict:
             writer.writerow([key, str(wordcount_dict[key])])
 
-    # print_ranks()
+    """Creates word cloud"""
+    text = ""
+    for key in wordcount_dict:
+        for i in range(wordcount_dict[key]):
+            text += key + " "
+    wordcloud = WordCloud(width = 3000, height = 2000, random_state=1, background_color='salmon', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(text)
+    wordcloud.to_file("wordcloud.png")
 
+"""Prints ordered list of most used words"""
 def print_ranks():
-    """Prints ordered list of most used words"""
     max = 0
     for key in wordcount_dict:
         if wordcount_dict[key] > max:
