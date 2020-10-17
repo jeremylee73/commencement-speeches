@@ -25,5 +25,14 @@ def main():
                 for word in words:
                     f_dict[file[slice(0,-4)]].append(word)
 
+    """Takes cumulative word counts and stores in dictionary"""
+    wordcount_dict = {}
+    for key in f_dict:
+        for word in f_dict[key]:
+            if (word not in wordcount_dict):
+                wordcount_dict[word] = 1
+            else:
+                wordcount_dict[word] += 1
+
 if __name__ == "__main__":
     main()
