@@ -34,5 +34,17 @@ def main():
             else:
                 wordcount_dict[word] += 1
 
+    """Prints ordered list of most used words"""
+    max = 0
+    for key in wordcount_dict:
+        if wordcount_dict[key] > max:
+            max = wordcount_dict[key]
+    count = 1
+    for i in range(max, 0, -1):
+        for key in wordcount_dict:
+            if wordcount_dict[key] == i:
+                print(str(count) + ". " + key + " (count: " + str(wordcount_dict[key]) + ")")
+                count += 1
+
 if __name__ == "__main__":
     main()
