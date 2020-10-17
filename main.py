@@ -51,6 +51,13 @@ def main():
             writer.writerow([key, str(wordcount_dict[key])])
 
     """Creates word cloud"""
+    # update_wordcloud()
+
+    """Prints ranked list of most used words"""
+    # print_ranks()
+
+"""Updates wordcloud.png"""
+def update_wordcloud():
     text = ""
     for key in wordcount_dict:
         for i in range(wordcount_dict[key]):
