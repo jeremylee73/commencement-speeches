@@ -1,16 +1,23 @@
 import os
 import re
+import numpy as np
+import pandas as pd
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+import csv
+
+files = []
+files_ts = []
+f_dict = {}
+wordcount_dict = {}
 
 def main():
     """Writes all file names into files and files_ts"""
-    files = []
-    files_ts = []
     for i in range(2000,2021):
         files.append(str(i) + ".txt")
         files_ts.append(str(i) + "_TIMESTAMPED.txt")
 
     """Loads files into dictionary"""
-    f_dict = {}
     for file in files:
         f_dict[file[slice(0,-4)]] = []
         path = os.getcwd() + "/Commencement Speeches/" + file
@@ -26,7 +33,6 @@ def main():
                     f_dict[file[slice(0,-4)]].append(word)
 
     """Takes cumulative word counts and stores in dictionary"""
-    wordcount_dict = {}
     for key in f_dict:
         if (f_dict[key][0] + f_dict[key][1] + f_dict[key][2] != "notranscriptfound"):
             for word in f_dict[key]:
@@ -35,6 +41,15 @@ def main():
                 else:
                     wordcount_dict[word] += 1
 
+    """Writes words into words.csv"""
+    with open("words.csv", mode = "w") as file:
+        writer = csv.writer(file, delimiter = ",", quotechar = '"', quoting = csv.QUOTE_MINIMAL)
+        for key in wordcount_dict:
+            writer.writerow([key, str(wordcount_dict[key])])
+
+    # print_ranks()
+
+def print_ranks():
     """Prints ordered list of most used words"""
     max = 0
     for key in wordcount_dict:
