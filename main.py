@@ -28,11 +28,12 @@ def main():
     """Takes cumulative word counts and stores in dictionary"""
     wordcount_dict = {}
     for key in f_dict:
-        for word in f_dict[key]:
-            if (word not in wordcount_dict):
-                wordcount_dict[word] = 1
-            else:
-                wordcount_dict[word] += 1
+        if (f_dict[key][0] + f_dict[key][1] + f_dict[key][2] != "notranscriptfound"):
+            for word in f_dict[key]:
+                if (word not in wordcount_dict):
+                    wordcount_dict[word] = 1
+                else:
+                    wordcount_dict[word] += 1
 
     """Prints ordered list of most used words"""
     max = 0
