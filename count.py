@@ -58,7 +58,7 @@ def make_pxbar(D_list):
         bar_list.append(go.Bar(name=D['Name'], x = D['Topics'], y=D['Weighted Frequency']))
 
     fig = go.Figure(bar_list)
-    fig.update_layout(title="Sentiment", template=theme_hodp)
+    fig.update_layout(title="Sentiments", template=theme_hodp)
     fig.show()
     
 def main():
@@ -80,7 +80,7 @@ def main():
     
 topic = '.csv'
 sentiment = '.csv'
-year = [f'Comm/Sentiments/{i}' for i in [2000,2002,2004,2005,2006]]
+year = [f'Comm/Sentiments/{i}' for i in [2020,2019]]
 monochrome_colors = ['#251616', '#760000', '#C63F3F', '#E28073', '#F1D3CF']
 primary_colors = ['#C63F3F', '#F4B436', '#83BFCC', '#455574', '#E2DDDB']
 
