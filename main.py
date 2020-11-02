@@ -34,7 +34,7 @@ def main():
                 # Appends words into dictionary entry
                 for word in words:
                     f_dict[file[slice(0,-4)]].append(word)
- 
+    print(f_dict['2000'])
     for key in f_dict:
         if (f_dict[key][0] + f_dict[key][1] + f_dict[key][2] != "notranscriptfound"):
             temp={}
@@ -61,6 +61,8 @@ def main():
     """Creates word cloud"""
     # update_wordcloud()
 
+    '''
+
     """Prints ranked list of most used words"""
     directory = 'years/'
     col = ["Rank", "Word","Count"]
@@ -76,6 +78,7 @@ def main():
                     write.writerow(i)
         except:
             pass
+    '''
     
 """Updates wordcloud.png"""
 def update_wordcloud():
